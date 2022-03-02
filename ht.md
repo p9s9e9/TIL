@@ -68,16 +68,21 @@ ex)
 ## 5. 이미지 관련 태그
 ### 5-1. 이미지 삽입
 * `<img>` : 이미지를 삽입할 때 사용.
-     `ex) <img src="파일경로" alt = "대체용 텍스트" width = "너비" height = "높이">`
+```html
+ex) <img src="파일경로" alt = "대체용 텍스트" width = "너비" height = "높이">
+```
 <br>
 
 ## 6. 오디오, 비디오 태그
 ### 6-1. 다양한 멀티미디어 파일 삽입
-* ` <object>` : 오디오, 비디오, 이미지, pdf 등 다양한 멀티미디어 파일을 삽입할 때 사용.
-    `ex) <object width="너비" height="높이" data="파일경로"></object>`
+* `<object>` : 오디오, 비디오, 이미지, pdf 등 다양한 멀티미디어 파일을 삽입할 때 사용.
+```html
+ex) <object width="너비" height="높이" data="파일경로"></object>
+```
 * `<embed>` : 다양한 멀티미디어 파일을 삽입할 수 있고 대부분의 브라우저에서 사용 가능.
-    `ex) <embed src="파일경로" width="너비" height="높이">`
-
+```html
+ex) <embed src="파일경로" width="너비" height="높이">
+```
 ### 6-2. 오디오, 비디오 파일 삽입
 * `<autio>`, `<video>` : 오디오와 비디오 파일을 삽입할 때 사용.
 ```html    
