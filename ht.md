@@ -141,29 +141,36 @@ ex) <input type="radio" value="넘겨줄 값" name="이름">
 * 라디오 버튼에서 하나의 버튼만 선택하게 하려면 모든 라디오 버튼의 name 값을 같게 해야함. 
 
 ## 9. input 태그의 주요 속성
-  - autofocus required : 자동으로 입력 커서를 갖다 놓는다.
-  - placeholder : 힌트를 표시  
-  - readonly : 읽기 전용으로 만듬
-  - required : 필수 입력으로 지정한다.
-  - checked : 체크박스, 라디오 버튼에서 기본으로 선택해 놓고 싶은 항목을 지정.
+* autofocus : 자동으로 입력 커서를 갖다 놓는다.
+* placeholder : 힌트를 표시  
+* readonly : 읽기 전용으로 만듬
+* required : 필수 입력으로 지정한다.
+* checked : 체크박스, 라디오 버튼에서 기본으로 선택해 놓고 싶은 항목을 지정.
 
 ## 10. 폼에서 사용하는 여러가지 태그
+* `<textarea>` : 여러 줄을 입력하는 텍스트영역을 만듬.
+* `<select>`, `<option>` : 드롭다운 목록을 만들어 준다.
+  * slecet 의 속성 size : 화면에 표시할 드롭다운 항목의 개수 지정.
+  * option 의 속성 seleceted : 기본적으로 선택해서 보여줄 항목을 지정.
+  * option 의 속성 value : 서버로 넘겨줄 값을 지정.
+```html
+ex) <label for="prod1"> 상품선택</label>
+    <select id="prod1">  
+      <option value="gfit_3"> 선물 3kg </option>
+      <option value="gift_5"> 선물 5kg </option>
+    </select>
+```
+* <datalist>, <option> : 데이터 목록을 만들어 준다.
 
-- <textarea> : 여러 줄을 입력하는 텍스트영역을 만듬.
-- <select>, <option> : 드롭다운 목록을 만들어 준다.
-     - slecet 의 속성 size : 화면에 표시할 드롭다운 항목의 개수 지정.
-     - option 의 속성 seleceted : 기본적으로 선택해서 보여줄 항목을 지정.
-                                value : 서버로 넘겨줄 값을 지정.
-     ex) <label for="prod1"> 상품선택</label>
-          <select id="prod1">
-               <option value="gfit_3"> 선물 3kg </option>
-               <option value="gift_5"> 선물 5kg </option>
-          </select>
+* <button> : input 태그의 필드와 다른 폼을 전송하거나 리셋하는 버튼을 삽입.
+```html
+ex)
+<button type=" sumbit || reset || button "> 내용 </button>
+  - submit : 폼을 서버로 전송 (input type="submit" 과 같은 기능)
+  - reset : 폼에 입력한내용 초기화 (input type="reset" 과 같은 기능)
+  - button : 버튼 형태만 만들 뿐 자체 기능은 추가해야함 (input type="button")
+```
 
-- <datalist>, <option> : 데이터 목록을 만들어 준다.
 
-- <button> : input 태그의 필드와 다른 폼을 전송하거나 리셋하는 버튼을 삽입.
-     ex) <button type="sumbit || reset || button"> 내용 </button>
-     submit : 폼을 서버로 전송 (input type="submit" 과 같은 기능)
-       reset : 폼에 입력한내용 초기화 (input type="reset" 과 같은 기능)
-       button : 버튼 형태만 만들 뿐 자체 기능은 추가해야함 (input type="button")
+
+      
