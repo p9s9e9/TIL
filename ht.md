@@ -126,15 +126,17 @@ ex)
 	ex)<label for="user-id"> 아이디 </label>
 	   <input type="text" id="user-id">
   ```
- >  1번째 방법은 레이블 다음 바로 폼을 형성해 입력을 받아야하지만<br>
- >  2번째 방법은 아이디 값을 지정해 서로 연결해주므로<br>
- >  폼이 페이지의 어느 곳에 있더라도 값이 지정된다.<br>
+  * 1번째 방법은 레이블 다음 바로 폼을 형성해 입력을 받아야하지만<br>
+    2번째 방법은 아이디 값을 지정해 서로 연결해주므로<br>
+    폼이 페이지의 어느 곳에 있더라도 값이 지정된다.<br>
 
 ## 8. input 태그의 type 속성
 ### 8-1. 속성
-* type = "text" | "password" | "url" | "email" | "tel" |
+* type = "text" | "password" | "url" | "email" | "tel" |<br>
          "checkbox" | "radio" | "submit" | "reset" | "button" 등등
-  `ex) <input type="radio" value="넘겨줄 값" name="이름">`
+```html
+ex) <input type="radio" value="넘겨줄 값" name="이름">
+```
 
 * 라디오 버튼에서 하나의 버튼만 선택하게 하려면 모든 라디오 버튼의 name 값을 같게 해야함. 
 
