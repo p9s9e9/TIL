@@ -1,4 +1,4 @@
-# HTML5
+# HTML5 
 > Do it ! HTML+CSS+자바스크립트 웹 표준의 정석 - 고경희
 ## 1. HTML 태그
 * `<header>` : 주로 사이트의 맨 위쪽을 담당.
