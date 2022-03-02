@@ -160,9 +160,9 @@ ex) <label for="prod1"> 상품선택</label>
       <option value="gift_5"> 선물 5kg </option>
     </select>
 ```
-* <datalist>, <option> : 데이터 목록을 만들어 준다.
+* `<datalist>`, `<option>` : 데이터 목록을 만들어 준다.
 
-* <button> : input 태그의 필드와 다른 폼을 전송하거나 리셋하는 버튼을 삽입.
+* `<button>` : input 태그의 필드와 다른 폼을 전송하거나 리셋하는 버튼을 삽입.
 ```html
 ex)
 <button type=" sumbit || reset || button "> 내용 </button>
