@@ -222,3 +222,244 @@ ex) .box1 { box-shadow: <수평거리>, <수직거리>, <흐림정도>, <번짐�
 
 ## 4. 이미지와 그라데이션 효과로 배경 꾸미기
 ### 4-1. 배경색과 배경 범위 지정 
+* background-color 속성: 배경색을 지정함.
+* background-clip 속성: 배경색의 적용 범위를 조절함.
+  * background-clip : border-box -> 테두리까지 적용.
+  * background-clip : padding-box -> 테두리를 뺀 패딩 범위까지 적용.
+  * background-clip : content-box -> 콘텐츠 부분만 적용.
+<hr>
+
+### 4-2 배경 이미지 지정
+* background-image 속성 : 웹 요소에 배경 이미지를 넣음.
+```html
+<style>
+  body{background-image : url('경로');}
+</style>
+```
+<hr>
+
+### 4-3 배경 이미지의 반복 방법 지정
+* background-repeat 속성
+  * background-repeat : repeat     -> 브라우저 화면에 가득 찰 때까지 가로와 세로로 반복.
+  * background-repeat : repeat-x   -> 브라우저 화면너비에 가득 찰 때까지 가로로 반복.
+  * background-repeat : repeat-y   -> 브라우저 화면높이에 가득 찰 때까지 세로로 반복.
+  * background-repeat : no-repeat  -> 한 번만 표시호가 반복하지 않음.
+</hr>
+
+### 4-4 배경 이미지의 위치 조절
+* background-position 속성
+```html
+background-position : <수평위치> <수직위치> ;
+수평 위치: left | center | right | <백분율> | <길이 값>
+수직 위치: top | center | bottom | <백분율> | <길이 값>
+```
+<hr>
+
+### 4-5 배경 이미지의 적용 범위 조절
+* background-origin 속성
+  * background-origin : content-box   -> 콘텐츠 부분에만 배경 이미지를 표시.  
+  * background-origin : padding-box   -> 패딩까지 배경 이미지를 표시.
+  * background-origin : boder-box     -> 테두리까지 배경 이미지를 표시.
+<hr>
+
+### 4-6 배경 이미지 고정하기
+* background-attachment 속성
+  * background-attachment : scroll   -> 화면을 스크롤하면 배경 이미지도 스크롤 됨.
+  * background-attachment : fixed    -> 화면을 스크롤하면 배경 이미지는 고정되고 내용만 스크롤 됨.
+<hr>
+
+### 4-7 backgorund 속성 하나로 관련 속성 표기하기
+```html
+body{
+  background : url('경로') no-repeat center bottom fixed;
+}
+```
+<hr>
+
+### 4-8 배경 이미지 크기 조절하기
+* background-size 속성
+  * background-size : auto         -> 원래 배경 이미지만큼 표시
+  * background-size : contain      -> 요소 안에 배경 이미지가 다 들어오게 확대, 축소함.
+  * background-size : cover        -> 배경이미지로 요소를 모두 덮도록 이미지를 확대, 축소함.
+  * background-size : <크기>       -> 이미지의 너비와 높이를 지정.
+  * background-size : <백분율>     -> 요소의 크기를 기준으로 백분율을 지정.
+<hr>
+
+### 4-9 그라데이션 효과
+* linear-gradient : 선형 그라데이션
+`linear-gradient( to <방향> 또는 <각도>, <색상 중지점>, <색상 중지점>, ...)`
+```html
+background: linear-gradient(to right bottom, blue, white);       // 왼쪽위에서 오른쪽아래 방향, 파란색에서 흰색으로. 
+```
+* radial-gradient : 원형 그라데이션
+`radial-gradient( <모양> <크기> at <위치>, <색상 중지점>, <색상 중지점, ...>)`
+```html
+background: radial-gradient(circle at 20% 20%, white, blue);     // 원형 그라이데이션 20% 20% 위치, 흰색에서 파란색으로.
+```
+* 반복 패턴 만들기
+  * repeating-linear-gradient
+  * repeating-radial-gradient
+<hr>
+
+## 5. CSS 고급 선택자
+### 5-1 연결 선택자
+* 둘 이상의 선택자를 연결.
+* 하위 선택자
+  * 부모 요소에 포함된 하위 요소를 모두 선택.
+  * 자식 요소, 손자 요소 등 
+  * ` section p {...} `
+* 자식 선택자 
+  * 자식 요소에만 스타일을 적용.
+  * 손자 요소 적용 안 됨.
+  * ` section > p {...} `
+<hr>
+
+* 부모 요소가 같을 경우 형제 관계라 하고, 먼저 나오는 요소를 형 요소 뒤를 동생 요소라 한다.
+* 인접 형제 선택자
+  * 형제 요소중 첫 번째 동생 요소만 선택하는 것.
+  * ` h1 + p {...}         // h1 요소의 형제인 첫 p만 적용. `
+* 형제 선택자
+  * 형제 요소중 동생 요소를 전부 선택하는 것.
+  * ` h1 ~ p {...}         // h1 요소의 형제인 모든 p를 적용.`
+<hr>
+
+### 5-2 속성 선택자
+* 태그 안에서 사용하는 속성 값에 따라 요소를 선택.
+* `[속성]` 선택자
+  * 특정 속성이 있는 요소를 선택.
+  * ` a[href] {...}            //  a요소 중 href 속성이 있는 요소 전부 선택.`
+* `[속성 = 속성값]` 선택자
+  * 속성과 속성값이 일치하는 요소를 선택.
+  * ` a[target=_blank] {...}   // a요소 중 target 속성값이 _blank 인 요소 전부 선택. `
+* `[속성 ~= 속성값]` 선택자
+  * 여러 속성값이 있는 요소중 해당 속성값이 있을 경우 선택.
+  * 하이픈 ( - ) 로 연결한 단어는 적용되지 않음.
+  * ` [calss ~= button] {...} `
+* `[속성 |= 속성값]` 선택자
+  * 여러 속성값이 있는 요소중 해당 속성값이 있을 경우 선택.
+  * 하이픈 ( - ) 로 연결한 단어도 적용됨.
+  * ` [calss |= button] {...} `
+```html
+<style>
+  a[title |= jap] {                  //속성 값이 정확히 jap 이거나 jap- 로 시작하는 요소를 찾는 선택자
+    background: url('경로')
+  }
+</style>
+...
+<ul>
+  <li><a href="#" title="jap">일본</a></li>        // 속성값 = jap
+```
+* `[속성 ^= 속성값]` 선택자
+  * 속성 값이 정확히 일치하지 않더라도 지정한 속성 값으로 시작하는 요소를 선택.
+  * ` a[title ^= eng] { .... }     // 속성값이 english 일경우에도 선택 됨.
+* `[속성 $= 속성값]` 선택자
+  * 지정한 속성값으로 끝날 경우 선택함.
+  * hwp, png, txt 등에 자주 사용.
+  * ` a[href $= xls]             // 속성값이 xls로 끝나는 요소들 선택. `
+```html
+<style>
+  a[href $= hwp] { ... }                     // href 속성 값이 hwp로 끝나는 요소 선택
+</style>
+...
+<ul>
+  <li><a href="hello.hwp"> hwp파일 </a></li>    // href 속성값이 hwp로 끝남.
+</ul>
+```
+* `[속성 *= 속성값]` 선택자
+  * 해당 속성값이 어느 위치에 있어도 지정한 속성값이 있다면 선택.
+  * ` a[href *= w3] {...}            // <a href="https://www.w3.org"></a>  w3이 들어가있으므로 선택. `   
+</hr>
+
+### 5-3 가상클래스, 가상요소
+* 반응 가상 클래스 : 웹 요소를 클릭하거나 마우스 포이인터를 올려놓는 등 사용자 동작에 반응함.
+* ` :link 가상클래스 선택자 ` : 방문하지 않은 링크에 스타일을 적용
+* ` :visited 가상클래스 선택자 ` : 방문한 링크에 스타일을 적용
+* ` :hover 가상클래스 선택자 ` : 마우스 포인터를 올려놓으면 스타일을 적용.
+* ` :active 가상클래스 선택자 ` : 웹 요소를 활성화 했을 때, 즉 클릭했을 때 스타일을 적용.
+* ` :focus 가상클래스 선택자 ` : 웹 요소에 포커스가 맞추어졌을 때 스타일을 적용.
+* 메뉴링크에 자주 사용함.
+* :link -> :visited -> :hover -> :active 순으로 정의 해야함.
+```html
+<style>
+  a:link, a:visited { ... }         // 방문한 링크와 방문하지 않은 링크 지정
+  a:hover, a:focus { ... }         // 마우스 포인터 올렸을 때, 초점을 맞췄을 때 지정
+  a:active { ... }                 // 클릭했을 때 지정
+</style>
+...
+<ul>
+  <li><a href="#"> </li>
+  <li><a href="#"> </li>
+</ul>
+```
+<hr>
+
+* 요소 상태 가상 클래스
+* ` :taget 가상 클래스 선택자 ` : a (앵커)의 목적지가 되는 부분의 스타일을 적용.
+* ` :enabled 와 :disabled 가상클래스 선택자 ` : 요소의 사용 여부에 따라 스타일을 적용.
+* ` :checked 가상 클래스 선택자 ` : 선택한 항목에 스타일을 적용.
+* ` :not 가상 클래스 선택자 ` : 선택한 항목을 제외하고 스타일을 적용.
+  * 4개중 3개를 선택하고 싶을때, 선택 안된 1개로 적용하면 코드가 간결해짐.
+<hr>
+
+* 구조 가상 클래스
+* 웹 문서의 구조를 기준으로 특정 위치에 있는 요소를 찾아 스타일을 적용.
+| 종류 | 설명 | 
+|---|:---:|
+|` :only-child ` | 부모 안에 자식 요소가 하나뿐일 때 자식 요소를 선택 |
+|` A:only-type-of ` | 부모 안에 A 요소가 하나뿐 일 때 선택 |
+|` :first-child ` | 부모 안에 있는 모든 요소 중에서 첫 번째 자식 요소를 선택 | 
+|` :last-child ` | 부모 안에 있는 모든 요소 중에서 마지막 자식 요소를 선택 | 
+|` A:first-of-type ` | 부모 안에 있는 A 요소 중에서 첫 번째 요소를 선택 |
+|` A:last-of-type ` | 부모 안에 있는 A 요소 중에서 마지막 요소를 선택 |
+|` :nth-child(n) ` | 부모 안에 있는 모든 요소 중에서 N번째 자식 요소를 선택 |
+|` :nth-last-child(n) ` | 부모 안에 있는 모든 요소 중에서 끝에서 N번째 자식 요소를 선택 |
+|` A:nth-of-type(n) ` | 부모 안에 있는 A 요소 중에서 N번째 요소를 선택 |
+|` A:nth-last-of-type(n) ` | 부모 안에 있는 A 요소 중에서 끝에서 N번째 요소를 선택 |
+```html
+<style>
+  .contents :nth-child(3){              // .contents의 세번재 자식 요소에 스타일 적용
+    background-color : green;
+  }
+  .contents p:nth-of-type(3){            // .contents의 p 요소 중에서 세번째 자식 요소에 스타일 적용
+    background-color : red;
+  }
+</style>
+...
+<div class = "contents">
+  <h2> 이용 안내 </h2>
+  <p> Excepteur do </p>
+  <p> Qui magna culpa </p>               // contents의 모든 자식요소 중 3번째 자식 요소
+  <h2> 객실 소개 </h2>
+  <p> Irure incididunt </p>             // contents의 p 자식 요소중 3번째
+  <h2> 예약 방법 </h2>
+  <p> Fugiat aliquip </p>
+</div>
+```
+<hr>
+
+* 가상요소
+* 문서 안의 특정 부분에 스타일을 지정하기 위해 가상으로 요소를 만들어 추가함. 
+* 화면에 보이는 부분을 꾸밀 때 불필요한 태그를 사용하지 않도록 하기 위함.
+* :: 를 사용해 표기함.
+* ` ::first-line , ::first-letter `    // 첫번째줄, 첫번째 글자에 스타일 적용
+* ` ::after, ::before `               // 지정한 요소의 내용 앞뒤에 컨텐츠를 추가할수 있음.
+```html
+<style>
+  li.new::after{
+    ...
+  }
+</style>
+...
+<ul>
+  <li class="new"> </li>      // <li> 요소의 앞부분에 컨텐츠 추가
+  <li> </li>
+  <li> </li>
+  <li class="new"> </li>      // <li> 요소의 앞부분에 컨텐츠 추가
+</ul>
+```
+<hr>
+
+## 6. 트랜지션과 애니메이션
+### 6-1 변형 (tarnsform)
+* ` transform : 함수 `
+* 2차원 변형 함수
