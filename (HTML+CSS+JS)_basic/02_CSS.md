@@ -159,7 +159,8 @@ ex)
 ### 3-5 박스 모델의 그림자 효과주기
 * box-shadow 속성
 ```html
-ex) .box1 { box-shadow: <수평거리>, <수직거리>, <흐림정도>, <번짐정도>, <색상>; }
+ex) 
+.box1 { box-shadow: <수평거리>, <수직거리>, <흐림정도>, <번짐정도>, <색상>; }
 ```
 <hr>
 
@@ -169,6 +170,7 @@ ex) .box1 { box-shadow: <수평거리>, <수직거리>, <흐림정도>, <번짐�
 * border-color 속성: 테두리 색상
 * border : 테두리 스타일들을 묶어서 한번에 표기할 수 있음. 
 ```html
+ex)
 #box1 { border: 3px; solid; blue; }
 ```
 * border-radius 속성: 테두리를 둥글게 만듬.
@@ -178,6 +180,7 @@ ex) .box1 { box-shadow: <수평거리>, <수직거리>, <흐림정도>, <번짐�
 * margin 속성: 요소 주변의 여백을 의미하며, 요소와 요소 사이의 간격을 조절 할 수 있다.
   * margin 속성과 auto값을 이용해 웹 문서를 가운데 정렬할 수 있다.
   ```html
+  ex)
   #container{
     width: 600px;            // 너비값을 반드시 지정해야함.
     margin: 20px auto;       // 위아래 마진은 20, 좌우 마진은 자동.
@@ -232,6 +235,7 @@ ex) .box1 { box-shadow: <수평거리>, <수직거리>, <흐림정도>, <번짐�
 ### 4-2 배경 이미지 지정
 * background-image 속성 : 웹 요소에 배경 이미지를 넣음.
 ```html
+ex)
 <style>
   body{background-image : url('경로');}
 </style>
@@ -249,6 +253,7 @@ ex) .box1 { box-shadow: <수평거리>, <수직거리>, <흐림정도>, <번짐�
 ### 4-4 배경 이미지의 위치 조절
 * background-position 속성
 ```html
+ex)
 background-position : <수평위치> <수직위치> ;
 수평 위치: left | center | right | <백분율> | <길이 값>
 수직 위치: top | center | bottom | <백분율> | <길이 값>
@@ -270,6 +275,7 @@ background-position : <수평위치> <수직위치> ;
 
 ### 4-7 backgorund 속성 하나로 관련 속성 표기하기
 ```html
+ex)
 body{
   background : url('경로') no-repeat center bottom fixed;
 }
@@ -289,11 +295,13 @@ body{
 * linear-gradient : 선형 그라데이션
 `linear-gradient( to <방향> 또는 <각도>, <색상 중지점>, <색상 중지점>, ...)`
 ```html
+ex)
 background: linear-gradient(to right bottom, blue, white);       // 왼쪽위에서 오른쪽아래 방향, 파란색에서 흰색으로. 
 ```
 * radial-gradient : 원형 그라데이션
 `radial-gradient( <모양> <크기> at <위치>, <색상 중지점>, <색상 중지점, ...>)`
 ```html
+ex)
 background: radial-gradient(circle at 20% 20%, white, blue);     // 원형 그라이데이션 20% 20% 위치, 흰색에서 파란색으로.
 ```
 * 반복 패턴 만들기
@@ -340,6 +348,7 @@ background: radial-gradient(circle at 20% 20%, white, blue);     // 원형 그�
   * 하이픈 ( - ) 로 연결한 단어도 적용됨.
   * ` [calss |= button] {...} `
 ```html
+ex)
 <style>
   a[title |= jap] {                  //속성 값이 정확히 jap 이거나 jap- 로 시작하는 요소를 찾는 선택자
     background: url('경로')
@@ -357,6 +366,7 @@ background: radial-gradient(circle at 20% 20%, white, blue);     // 원형 그�
   * hwp, png, txt 등에 자주 사용.
   * ` a[href $= xls]             // 속성값이 xls로 끝나는 요소들 선택. `
 ```html
+ex)
 <style>
   a[href $= hwp] { ... }                     // href 속성 값이 hwp로 끝나는 요소 선택
 </style>
@@ -380,6 +390,7 @@ background: radial-gradient(circle at 20% 20%, white, blue);     // 원형 그�
 * 메뉴링크에 자주 사용함.
 * :link -> :visited -> :hover -> :active 순으로 정의 해야함.
 ```html
+ex)
 <style>
   a:link, a:visited { ... }         // 방문한 링크와 방문하지 않은 링크 지정
   a:hover, a:focus { ... }         // 마우스 포인터 올렸을 때, 초점을 맞췄을 때 지정
@@ -417,6 +428,7 @@ background: radial-gradient(circle at 20% 20%, white, blue);     // 원형 그�
 |` A:nth-of-type(n) ` | 부모 안에 있는 A 요소 중에서 N번째 요소를 선택 |
 |` A:nth-last-of-type(n) ` | 부모 안에 있는 A 요소 중에서 끝에서 N번째 요소를 선택 |
 ```html
+ex)
 <style>
   .contents :nth-child(3){              // .contents의 세번재 자식 요소에 스타일 적용
     background-color : green;
@@ -445,6 +457,7 @@ background: radial-gradient(circle at 20% 20%, white, blue);     // 원형 그�
   * ` ::first-line , ::first-letter `    // 첫번째줄, 첫번째 글자에 스타일 적용
   * ` ::after, ::before `               // 지정한 요소의 내용 앞뒤에 컨텐츠를 추가할수 있음.
 ```html
+ex)
 <style>
   li.new::after{
     ...
