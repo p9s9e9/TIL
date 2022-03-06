@@ -403,6 +403,7 @@ background: radial-gradient(circle at 20% 20%, white, blue);     // 원형 그�
 
 * 구조 가상 클래스
 * 웹 문서의 구조를 기준으로 특정 위치에 있는 요소를 찾아 스타일을 적용.
+
 | 종류 | 설명 | 
 |---|:---:|
 |` :only-child ` | 부모 안에 자식 요소가 하나뿐일 때 자식 요소를 선택 |
@@ -438,11 +439,11 @@ background: radial-gradient(circle at 20% 20%, white, blue);     // 원형 그�
 <hr>
 
 * 가상요소
-* 문서 안의 특정 부분에 스타일을 지정하기 위해 가상으로 요소를 만들어 추가함. 
-* 화면에 보이는 부분을 꾸밀 때 불필요한 태그를 사용하지 않도록 하기 위함.
-* :: 를 사용해 표기함.
-* ` ::first-line , ::first-letter `    // 첫번째줄, 첫번째 글자에 스타일 적용
-* ` ::after, ::before `               // 지정한 요소의 내용 앞뒤에 컨텐츠를 추가할수 있음.
+  * 문서 안의 특정 부분에 스타일을 지정하기 위해 가상으로 요소를 만들어 추가함. 
+  * 화면에 보이는 부분을 꾸밀 때 불필요한 태그를 사용하지 않도록 하기 위함.
+  * :: 를 사용해 표기함.
+  * ` ::first-line , ::first-letter `    // 첫번째줄, 첫번째 글자에 스타일 적용
+  * ` ::after, ::before `               // 지정한 요소의 내용 앞뒤에 컨텐츠를 추가할수 있음.
 ```html
 <style>
   li.new::after{
@@ -461,5 +462,5 @@ background: radial-gradient(circle at 20% 20%, white, blue);     // 원형 그�
 
 ## 6. 트랜지션과 애니메이션
 ### 6-1 변형 (tarnsform)
-* ` transform : 함수 `
+* ex) ` transform : 함수 `
 * 2차원 변형 함수
