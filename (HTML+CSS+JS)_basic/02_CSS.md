@@ -643,4 +643,72 @@ ex)
 
 ### 7-5. 플렉스 박스 레이아웃
 ![flexboxlayout](img/flexboxlayout.png)
-* 플렉스 박스, 배치하는 속성.
+* 플렉스 컨테이너 지정하기.
+  * 먼저 레이아웃을 적용할 컨텐츠를 플렉스 컨테이너로 묶어 주어야 함.
+  * display: flex 속성          -> 플렉스 항목을 블록 레벨 요소로 배치.
+  * display: inline-flex 속성   -> 플렉스 항목을 인라인 레벨 요소로 배치.
+* 플렉스 박스의 배치방향 지정하기.
+  * flex-direction : row 속성               -> 주축:가로, 왼쪽에서 오른쪽 (기본값)
+  * flex-direction : row-reverse 속성       -> 주축:가로, 오른쪽에서 왼쪽
+  * flex-direction : column 속성            -> 주축:세로, 위에서 아래
+  * flex-direction : column-reverse 속성    -> 주축:세로, 아래에서 위로
+* 플렉스 박스의 줄 바꾸기.
+  * 플렉스 컨테이너 너비보다 많은 플렉스 박스들이 있을 경우 줄을 바꿀지 지정.
+  * flex-wrap: nowrap 속성           -> 플렉스 박스를 한줄에 표시. (기본값)
+  * flex-wrap: wrap 속성             -> 플렉스 박스를 여러 줄에 표시. 
+  * flex-wrap: wrap-reverse 속성     -> 플렉스 박스를 여러줄에 표시하되, 시작점과 끝점이 바뀜.
+* 플렉스 박스의 배치방향, 줄바꿈 한꺼번에 지정하기
+  * flex-flow 속성
+
+```html
+ex)
+<style>
+  .container { display: flex;}            // 플렉스 컨테이너 지정
+  #box1 {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  #box2 {
+    flex-flow: column wrap; 
+  }
+</style>
+```
+<hr>
+
+* 플렉스 박스 정렬 방법
+  * justify-content 속성 : 주축 방향의 정렬 방법
+    * justify-content: flex-start        -> 주축의 시작점에 맞춰 배치.
+    * justify-content: flex-end          -> 주축의 끝점에 맞춰 배치.
+    * justify-content: center            -> 주축의 중앙에 맞춰 배치.
+    * justify-content: space-around      -> 모든 항목을 주축에 같은 간격으로 배치.
+  * align-items 속성 : 교차축 방향의 정렬 방법
+    * align-items: flex-start            -> 교차축의 시작점에 맞춰 배치.
+    * align-items: flex-end              -> 교차축의 끝점에 맞춰 배치
+    * align-items: center                -> 교차축의 중앙에 배치.
+    * align-items: baseline              -> 교차축의 문자 기준선에 맞춰 배치.
+    * align-items: stretch               -> 플렉스 항목을 늘려 교차축에 가득차게 배치.
+  * align-self 속성 : 교차축에서 특정 항목만 정렬 방법을 지정.
+    * 속성 값은 align-itesm 와 같음
+  * align-content 속성 : 교차축에서 여러 줄로 표시된 항목의 정렬 방법
+    * 속성 값은 align-itesm 와 같음
+* 플렉스 레이아웃을 활용해 화면 중앙에 배치하기.
+```html
+ex)
+<style>
+  * { margin: 0; box-sizing: border-box;}
+  body{
+    background: url('경로') no-repeat left top fixed;
+    background-size: cover;
+    display: flex;                     // 플렉스 컨테이너 지정
+    justify-content: center;           // 주축의 중앙에 배치
+    align-items: center;               // 교차축의 중앙에 배치.
+    min-height: 100vh;                 // 이미지 높이가 100vh 이하로 작아지지 않음.
+  }
+</style>
+```
+<hr>
+
+### 7-6. CSS 그리드 레이아웃
+* 플렉스 레이아웃은 가로, 세로 중 하나를 주축으로 사용. 1차원.
+* CSS 그리드 레이아웃은 가로와 세로를 모두 사용. 2차원.
+* 줄(row): 가로방향, 칼럼(column): 세로방향으로 웹 화면을 구성.
