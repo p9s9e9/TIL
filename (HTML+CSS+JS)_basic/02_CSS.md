@@ -742,3 +742,30 @@ ex)
 | grid-row-end | 줄 마지막의 라인 번호를 지정. | grid-row-end: 4 |
 | grid-row | 줄 시작번호, 줄 끝번호 사이에 / 를 넣어 사용. | grid-row: 2/4 |
 
+* 템플릿 영역을 만들어 배치하기.
+  * gird-area 속성                -> 각 영역에 템플릿 이름 지정.
+  * grid-template-areas 속성      -> 템플릿 영역을 어떻게 배치할지 지정.
+///html
+ex)
+<style>
+  .box1{
+    background-color: red;
+    grid-area: box1;                    // 이름 지정.
+  }
+  .box2{
+    background-color: blue;
+    grid-area: bo2;                     // 이름 지정.
+  }
+  ...
+  #wrapper{
+    width = 700px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 100px);
+    grid-template-areas:
+      "box1 box1 box1"                   // 한 줄에 들어갈 템플릿 영역을 큰따옴표로 묶음.
+      "box2 box3 box3"
+      "box2 . box4";                    // 빈 영역은 마침표를 넣음.
+  }
+</style>
+```
