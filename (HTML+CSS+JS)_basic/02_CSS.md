@@ -746,7 +746,7 @@ ex)
   * gird-area 속성                -> 각 영역에 템플릿 이름 지정.
   * grid-template-areas 속성      -> 템플릿 영역을 어떻게 배치할지 지정.
 
-///html
+```html
 ex)
 <style>
   .box1{
