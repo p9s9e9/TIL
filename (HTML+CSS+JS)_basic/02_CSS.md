@@ -712,3 +712,33 @@ ex)
 * 플렉스 레이아웃은 가로, 세로 중 하나를 주축으로 사용. 1차원.
 * CSS 그리드 레이아웃은 가로와 세로를 모두 사용. 2차원.
 * 줄(row): 가로방향, 칼럼(column): 세로방향으로 웹 화면을 구성.
+![CSSgridlayout](img/CSSgridlayout.png)
+
+* 그리드 컨테이너 지정하기.
+  * 먼저 레이아웃을 적용할 컨텐츠를 플렉스 컨테이너로 묶어 주어야 함.
+  * display: gird 속성              -> 컨테이너 안의 항목을 블록 레벨 요소로 배치.
+  * display: inline-grid 속성       -> 컨테이너 안의 항목을 인라인 레벨 요소로 배치.
+* 줄과 칼람의 크기와 개수 지정하기.
+  * gird-template-rows 속성         -> 줄의 개수와 너비 지정.
+  * grid-template-columns 속성      -> 칼럼의 개수와 높이 지정.
+    * 그리드 레이아웃에서는 상대적인 크기를 지정할 수 있는 fr 단위를 사용.
+    * ex) ` grid-template-columns: 1fr 1fr 1fr; `
+    * 값이 반복 될 때 줄여서 표현할 수 있는 repate() 함수 사용.
+    * ex) ` grid-template-columns: repeat(3, 1fr); `
+* 그리드 항목의 간격을 지정하기.
+  * grid-column-gap 속성      -> 칼럼과 칼럼 사이의 간격을 지정.
+  * grid-row-gap 속성         -> 줄고 줄 사이의 간격을 지정.
+  * grid-gap 속성             -> 칼럼과 줄 사이의 간격을 한꺼번에 지정.
+<hr>
+
+* 그리드 라인을 이용해 그리드 항목 배치하기.
+
+| 속성 | 설명 | 예시 |
+|---|:---:|---|
+| grid-column-start | 칼럼 시작의 라인 번호를 지정. | grid-column-start: 1 |
+| grid-column-end | 칼럼 마지막의 라인 번호를 지정. | grid-column-end: 4 |
+| grid-column | 칼럼 시작번호, 칼럼 끝번호 사이에 / 를 넣어 사용. | grid-column: 1/4 |
+| grid-row-start | 줄 시작의 라인 번호를 지정. | grid-row-start: 2 |
+| grid-row-end | 줄 마지막의 라인 번호를 지정. | grid-row-end: 4 |
+| grid-row | 줄 시작번호, 줄 끝번호 사이에 / 를 넣어 사용. | grid-row: 2/4 |
+
