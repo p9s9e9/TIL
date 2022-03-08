@@ -645,18 +645,18 @@ ex)
 ![flexboxlayout](img/flexboxlayout.png)
 * 플렉스 컨테이너 지정하기.
   * 먼저 레이아웃을 적용할 컨텐츠를 플렉스 컨테이너로 묶어 주어야 함.
-  * display: flex 속성          -> 플렉스 항목을 블록 레벨 요소로 배치.
-  * display: inline-flex 속성   -> 플렉스 항목을 인라인 레벨 요소로 배치.
+  * display: flex 속성          --> 플렉스 항목을 블록 레벨 요소로 배치.
+  * display: inline-flex 속성   --> 플렉스 항목을 인라인 레벨 요소로 배치.
 * 플렉스 박스의 배치방향 지정하기.
-  * flex-direction : row 속성               -> 주축:가로, 왼쪽에서 오른쪽 (기본값)
-  * flex-direction : row-reverse 속성       -> 주축:가로, 오른쪽에서 왼쪽
-  * flex-direction : column 속성            -> 주축:세로, 위에서 아래
-  * flex-direction : column-reverse 속성    -> 주축:세로, 아래에서 위로
+  * flex-direction : row 속성               --> 주축:가로, 왼쪽에서 오른쪽 (기본값)
+  * flex-direction : row-reverse 속성       --> 주축:가로, 오른쪽에서 왼쪽
+  * flex-direction : column 속성            --> 주축:세로, 위에서 아래
+  * flex-direction : column-reverse 속성    --> 주축:세로, 아래에서 위로
 * 플렉스 박스의 줄 바꾸기.
   * 플렉스 컨테이너 너비보다 많은 플렉스 박스들이 있을 경우 줄을 바꿀지 지정.
-  * flex-wrap: nowrap 속성           -> 플렉스 박스를 한줄에 표시. (기본값)
-  * flex-wrap: wrap 속성             -> 플렉스 박스를 여러 줄에 표시. 
-  * flex-wrap: wrap-reverse 속성     -> 플렉스 박스를 여러줄에 표시하되, 시작점과 끝점이 바뀜.
+  * flex-wrap: nowrap 속성           --> 플렉스 박스를 한줄에 표시. (기본값)
+  * flex-wrap: wrap 속성             --> 플렉스 박스를 여러 줄에 표시. 
+  * flex-wrap: wrap-reverse 속성     --> 플렉스 박스를 여러줄에 표시하되, 시작점과 끝점이 바뀜.
 * 플렉스 박스의 배치방향, 줄바꿈 한꺼번에 지정하기
   * flex-flow 속성
 
@@ -677,16 +677,16 @@ ex)
 
 * 플렉스 박스 정렬 방법
   * justify-content 속성 : 주축 방향의 정렬 방법
-    * justify-content: flex-start        -> 주축의 시작점에 맞춰 배치.
-    * justify-content: flex-end          -> 주축의 끝점에 맞춰 배치.
-    * justify-content: center            -> 주축의 중앙에 맞춰 배치.
-    * justify-content: space-around      -> 모든 항목을 주축에 같은 간격으로 배치.
+    * justify-content: flex-start        --> 주축의 시작점에 맞춰 배치.
+    * justify-content: flex-end          --> 주축의 끝점에 맞춰 배치.
+    * justify-content: center            --> 주축의 중앙에 맞춰 배치.
+    * justify-content: space-around      --> 모든 항목을 주축에 같은 간격으로 배치.
   * align-items 속성 : 교차축 방향의 정렬 방법
-    * align-items: flex-start            -> 교차축의 시작점에 맞춰 배치.
-    * align-items: flex-end              -> 교차축의 끝점에 맞춰 배치
-    * align-items: center                -> 교차축의 중앙에 배치.
-    * align-items: baseline              -> 교차축의 문자 기준선에 맞춰 배치.
-    * align-items: stretch               -> 플렉스 항목을 늘려 교차축에 가득차게 배치.
+    * align-items: flex-start            --> 교차축의 시작점에 맞춰 배치.
+    * align-items: flex-end              --> 교차축의 끝점에 맞춰 배치
+    * align-items: center                --> 교차축의 중앙에 배치.
+    * align-items: baseline              --> 교차축의 문자 기준선에 맞춰 배치.
+    * align-items: stretch               --> 플렉스 항목을 늘려 교차축에 가득차게 배치.
   * align-self 속성 : 교차축에서 특정 항목만 정렬 방법을 지정.
     * 속성 값은 align-itesm 와 같음
   * align-content 속성 : 교차축에서 여러 줄로 표시된 항목의 정렬 방법
@@ -716,19 +716,19 @@ ex)
 
 * 그리드 컨테이너 지정하기.
   * 먼저 레이아웃을 적용할 컨텐츠를 플렉스 컨테이너로 묶어 주어야 함.
-  * display: gird 속성              -> 컨테이너 안의 항목을 블록 레벨 요소로 배치.
-  * display: inline-grid 속성       -> 컨테이너 안의 항목을 인라인 레벨 요소로 배치.
+  * display: gird 속성              --> 컨테이너 안의 항목을 블록 레벨 요소로 배치.
+  * display: inline-grid 속성       --> 컨테이너 안의 항목을 인라인 레벨 요소로 배치.
 * 줄과 칼람의 크기와 개수 지정하기.
-  * gird-template-rows 속성         -> 줄의 개수와 너비 지정.
-  * grid-template-columns 속성      -> 칼럼의 개수와 높이 지정.
+  * gird-template-rows 속성         --> 줄의 개수와 너비 지정.
+  * grid-template-columns 속성      --> 칼럼의 개수와 높이 지정.
     * 그리드 레이아웃에서는 상대적인 크기를 지정할 수 있는 fr 단위를 사용.
     * ex) ` grid-template-columns: 1fr 1fr 1fr; `
     * 값이 반복 될 때 줄여서 표현할 수 있는 repate() 함수 사용.
     * ex) ` grid-template-columns: repeat(3, 1fr); `
 * 그리드 항목의 간격을 지정하기.
-  * grid-column-gap 속성      -> 칼럼과 칼럼 사이의 간격을 지정.
-  * grid-row-gap 속성         -> 줄고 줄 사이의 간격을 지정.
-  * grid-gap 속성             -> 칼럼과 줄 사이의 간격을 한꺼번에 지정.
+  * grid-column-gap 속성      --> 칼럼과 칼럼 사이의 간격을 지정.
+  * grid-row-gap 속성         --> 줄고 줄 사이의 간격을 지정.
+  * grid-gap 속성             --> 칼럼과 줄 사이의 간격을 한꺼번에 지정.
 <hr>
 
 * 그리드 라인을 이용해 그리드 항목 배치하기.
@@ -743,8 +743,8 @@ ex)
 | grid-row | 줄 시작번호, 줄 끝번호 사이에 / 를 넣어 사용. | grid-row: 2/4 |
 
 * 템플릿 영역을 만들어 항목  배치하기.
-  * gird-area 속성                -> 각 영역에 템플릿 이름 지정.
-  * grid-template-areas 속성      -> 템플릿 영역을 어떻게 배치할지 지정.
+  * gird-area 속성                --> 각 영역에 템플릿 이름 지정.
+  * grid-template-areas 속성      --> 템플릿 영역을 어떻게 배치할지 지정.
 
 ```html
 ex)
