@@ -134,3 +134,34 @@ byte value2 = Byte.parseByte(str);
 <hr>
 
 ## 2-4. 변수와 시스템입출력
+* 핵심 키워드
+  * System.out.println()
+  * System.out.print()
+  * System.out.printf()
+  * System.in.read()
+  * Scanner
+### 2-4-1. 모니터로 변수값 출력하기.
+* System.out.println() : 괄호안의 내용을 출력하고 개행.
+* System.out.print() : 괄호안의 내용을 출력.
+* System.out.printf("형식문자열", 값1, 값2 ...) : 괄호안의 첫 번째 문자열 형식대로 내용을 출력.
+  * ex) ` System.out.printf("이름: %s", "홍길동");    // 이름:김자바 , 형식문자열 %s 사용 `
+  * ex) ` System.out.printf("나이: %d", 25);          // 나이:25 , 형식문자열 %d 사용 `
+| 형식문자열 | 설명 | 
+|---|:---:|
+| %d | 정수 |
+| %f | 실수 |
+| %s | 문자열 |
+| %c | 문자 |
+### 2-4-2. 키보드에서 입력된 내용 변수에 저장하기.
+* System.in.read() : 키코드를 하나씩 읽음. 통 문자열로 읽지 못함.
+```java
+int keyCode = System.in.read();                      // a 입력
+System.out.println("keyCode: " + keyCode);           // keyCode:97
+```
+* 입력받은 문자열 저장하기.
+```java
+Scanner scanner = new Scanner(System.in);            // Scanner타입의 scanner변수 생성, 입력장치로부터 읽는 Scanner 생성, Scanner를 변수에 저장 
+string inputData = scanner.nextLine();               // scanner.nextLine() 를 사용해 입력받은 값을 inputData에 저장.
+
+System.out.println("입력된 문자열: " + inputData);
+```
