@@ -118,6 +118,8 @@ int result = x + y;    //  byte변수 int타입으로 변환되었으므로 int 
 ### 2-3-5. + 연산에서의 문자열 자동 타입 변환
 * 피연산자가 모두 숫자일 경우 덧셈 연산을 수행.
 * 피연산자 중 하나가 문자열일 경우에는 나머지 피연산자도 문자열로 자동 변환되어 연산을 수행.
+<hr>
+
 ### 2-3-6. 문자열 -> 기본타입으로 강제 타입 변환
 * parseByte, parseShort, parseInt, parseLong, parse Double ...
 ```java
@@ -129,3 +131,6 @@ byte value2 = Byte.parseByte(str);
 ### 2-3-7. 기본타입 -> 문자열로 강제 타입 변환
 * string.valueOf()
 * ` string str = String.valueOf(기본타입값); `
+<hr>
+
+## 2-4. 변수와 시스템입출력
