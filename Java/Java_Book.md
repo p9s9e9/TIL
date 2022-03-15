@@ -165,3 +165,5 @@ string inputData = scanner.nextLine();               // scanner.nextLine() 를 �
 
 System.out.println("입력된 문자열: " + inputData);
 ```
+
+## 3.
