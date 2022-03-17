@@ -22,6 +22,13 @@
 <hr>
 
 # 2. 변수와 타입
+* 핵심 키워드
+  * 2-1. 변수, 변수선언, 변수사용, 변수범위
+  * 2-2. 정수타입, 실수타입, char타입, string타입, boolean 타입
+  * 2-3. 자동타입변환, 강제타입변환, Integer.parseInt(), Double.parseDouble(), string.valueOf()
+  * 2-4. System.out.println(), System.out.printf(), System.in.read(), Scanner
+<hr>
+
 ## 2-1. 변수
 * 변수는 값을 저장할 수 있는 메모리의 특정 번지에 붙이는 이름.
 * 변수가 초기화 되면 메모리 번지 정보를 갖고, 해당 메모리 번지에 값이 저장됨.
@@ -127,6 +134,7 @@ string str = "30";
 int value = Integer.parseInt(str);
 short value1 = Short.parseInt(str);
 byte value2 = Byte.parseByte(str);
+Double value3 = Double.parseDouble(str);
 ```
 ### 2-3-7. 기본타입 -> 문자열로 강제 타입 변환
 * string.valueOf()
@@ -169,7 +177,7 @@ public class VariableInitializationExample {
 	public static void main(String[] args) throws Exception {
     Scanner scanner = new Scanner(System.in);             
     string inputData = scanner.nextLine();               // scanner.nextLine() 를 사용해 입력받은 값을 inputData에 저장.
-    
+    gi
     System.out.println("입력된 문자열: " + inputData);
 	}
 }
@@ -177,5 +185,73 @@ public class VariableInitializationExample {
 <hr>
 
 ## 3. 연산자
+* 핵심키워드
+  * 3-1. 연산자, 피연산자, 연산방향, 연산 우선순위
+  * 3-2. (증감, 비교, 논리, 대입, 삼항) 연산자
+* 삼항연산자 
+  * (조건식) ? true일때 : false일때
+
+<hr>
+
 ## 4. 조건문과 반복문
+* 핵심키워드
+  * 4-1. if문, if else문, switch문
+  * 4-2. for문, wihle문, do wihle문, break문, continue문
 ### 4-1. 조건문
+* if문, if-else문, 
+  * `if(조건값)` 조건값이 true면 if문 실행, false면 esle문 실행.
+  ```java
+  if(조건값){
+    ...
+  }
+  else if{
+    ...
+  }
+  else{
+    ...
+  }
+  ```
+* switch문
+  * `switch(변수)` 변수가 어떤 값을 갖느냐에 따라 실행문이 선택됨.
+  ```java
+  swich(변수){
+    case 변수값:
+      ...
+      break;
+    case 변수값:
+      ...
+      break;
+    default:
+      ...
+      break;
+  }
+  ```
+<hr>
+
+### 4-2. 반복문
+* for문
+```java
+for(초기화식; 조건식; 증감식){   //순서: 초기화식-> 조건식-> 실행문-> 증감식.
+  ...
+}
+```
+* while문
+```java
+while(조건식){
+  ...
+}
+```
+* do while문
+```java
+do{
+  ...
+}while(조건식)   // 한번은 무조건 실행한다는 특징.
+```
+* break문, continue문
+  * break문은 조건문, 반복문을 종료하고 완전히 빠져나간다.
+  * continue문은 반복문에서 사용되는데 조건식으로 다시 이동시킨다.
+<hr>
+
+## 5. 참조타입
+* 핵심키워드 : 기본타입, 참조타입, 메모리 사용 영역, 번지비교, null, NullPointerException
+<hr>
