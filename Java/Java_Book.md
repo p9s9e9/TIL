@@ -160,10 +160,19 @@ System.out.println("keyCode: " + keyCode);           // keyCode:97
 ```
 * 입력받은 문자열 저장하기.
 ```java
-Scanner scanner = new Scanner(System.in);            // Scanner타입의 scanner변수 생성, 입력장치로부터 읽는 Scanner 생성, Scanner를 변수에 저장 
-string inputData = scanner.nextLine();               // scanner.nextLine() 를 사용해 입력받은 값을 inputData에 저장.
+package sec01.exam01;
 
-System.out.println("입력된 문자열: " + inputData);
+import java.util.Scanner;                             // java.util 을 import해야함. 
+
+public class VariableInitializationExample {
+
+	public static void main(String[] args) throws Exception {
+    Scanner scanner = new Scanner(System.in);             
+    string inputData = scanner.nextLine();               // scanner.nextLine() 를 사용해 입력받은 값을 inputData에 저장.
+    
+    System.out.println("입력된 문자열: " + inputData);
+	}
+}
 ```
 <hr>
 
