@@ -406,7 +406,7 @@ Week today;       // Week로 today 변수선언. today변수에 저장가능한�
   * ` Week today = Week.FRIDAY;    // Week 열거타입의 today 열거타입변수에다 열거상수 FRIDAY 값을 저장 `
 <hr>
 
-## 6.
+## 6. 클래스
 * 핵심키워드
   * 6-1. 클래스, 객체, new연산자, 클래스변수, 인스턴스, 클래스멤버
   * 6-2. 필드선언, 필드사용
@@ -468,21 +468,117 @@ Week today;       // Week로 today 변수선언. today변수에 저장가능한�
   * 필드값을 읽고 변경하는 작업을 말함.
   * 클래스 외부에서 사용할 경우 사용할 클래스의 객체를 생성한뒤 필드를 사용해야함.
 ```java
-Person 클래스                          Car 클래스            
-
-void method(){                       Public class Car{
-  Car myCar = new Car();               int speed;
-  myCar.speed = 60;                    Car(){  
-}                                        speed = 0;
-                                       }
-                                       void method(){
-                                        speed = 10;
-                                       }
-                                     }
+Person 클래스                                |    Car 클래스            
+                                             |
+void method(){                               |    Public class Car{
+  Car myCar = new Car();   // Car 객체생성   |   
+  myCar.speed = 60;                          |     int speed;          // 필드
+                                             |     Car(){              // 생성자
+}                                            |        speed = 0;
+                                             |      }
+                                             |      void method(){     // 메서드
+                                             |        speed = 10;
+                                             |      }
+                                             |    }
 ```
-<hr>
+<hr>                                           
 
 ### 6-3. 생성자.
+* new 연산자로 클래스로부터 객체를 생성할때 호출되어 객체의 초기화를 담당.
+* 모든 클래스에 반드시 하나 이상 존재.
+* 선언을 생략하면 기본 생성자가 자동으로 추가됨.
+* 기본 생성자
+  * 클래스의 접근제한자가 public이면 기본 생성자도 public
+  * public 없이 클래스로만 선언되면 기본생성자에도 public이 붙지 않음.
+  * 클래스에 명시적으로 선언한 생성자가 1개라도 있으면 기본 생성자를 추가하지 않음.
+* 생성자 선언
+  * 리턴 타입이 없고 클래스 이름과 동일.
+  ```java
+  클래스(매개변수선언, ... ) {
+    ...           // 객체의 초기화 코드             
+  }
+  ```
+  ```java
+  public class Car{                 |      public class CarExample{
+    Car(String color, int cc){      |       public static void mian(String[] args){
+    }                               |          Car myCar = new Car("검정", 3000);
+  }                                 |        }
+                                    |      }
+  ```
+
+* 필드 초기화
+  * 필드를 선언할 때 초기값을 준다.
+  * 생성자에서 초기값을 준다.
+  ```java
+  public class Korean{
+    String nation = "대한민국";
+    String name;
+    String ssn;
+
+    public Korean(String name, String ssn){     
+      this.name = name;                             // this.name은 name 필드를 의미, name은 매개변수를 의미.
+      this.ssn = ssn;                               // this.ssn은 ssn 필드를 의미, ssn은 매개변수를 의미.
+    }
+  }
+  ```
+<hr>
+
+* 생성자 오버로딩
+  * 매개변수를 달리하는 생성자를 여러 개 선언하는 것.
+  ```java
+  public class Car{
+    Car() { ... }
+    Car(String model) { ... }
+    Car(String model, String color) { ... }
+    Car(String model, String color, int maxSpeed){ ... }
+  }
+
+  Car car1 = new Car();
+  Car car2 = new Car("그랜저");
+  Car car3 = new Car("그랜저", "레드");
+  Car car4 = new Car("그랜저", "레드", 300);
+
+  ```
+  * 주의할 점: 매개변수의 타입, 개수, 선언된 순서가 똑같을 경우 매개변수 이름만 바꾸는 것은 오버로딩이 아님.
+  ```java
+  
+  Car(String model, String color){ ... }
+  Car(String color, String model){ ... }         //오버로딩이 아님.
+  
+  ```
+  * new연산자로 생성자를 호출할때, 매개값의 타입과 개수에 의해 호출될 생성자가 결정 됨.
+<hr>
+
+* 다른 생성자 호출: this()
+  * 생성자 오버로딩이 많아질 경우 생성자간 중복된 코드가 발생.
+  * 필드 초기화 내용은 한 생성자에만 집중하고
+  * 나머지 생성자는 초기화 내용을 가지고 있는 생성자를 호출하는 방법으로 개선.
+  * 반드시 생성자의 첫 줄에서만 this()를 호출해야함.
+  * this()의 매개값은 호출되는 생성자의 매개변수에 맞게 제공해야함.
+  ```java
+  public Class Car{
+    String model;
+    String color;
+    int maxSpeed;
+
+    Car(String model){
+      this(model, "은색", 250);            // 매개변수 model은 어차피 생성자 호출때 값을 입력하게 됨.
+    }                                      // model값만 입력받았지만 "은색", 250도 color, MaxSpeed 필드값으로 저장됨.
+    
+    Car(String model, String color){
+      this(model, color, 250);             // 매개변수 model, color도 생성자 호출때 값을 입력하게 됨.
+    }
+    
+    Car(String model, String color, int maxSpeed){
+      this.model = model;               // 공통 실행코드
+      this.color = color;               //      "
+      this.maxSpeed = maxSpeed;         //      "
+    }
+  }
+  ```
+
+
+
 
 
 
