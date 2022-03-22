@@ -336,13 +336,13 @@ System.out.println("총 문자 수: " + str.length());    // <- NullPointerExcep
     * 타입[] 변수 = {값0, 값1, 값2};
     * ` String[] names = {"이름1", "이름2", "이름3"}; `
     * 배열 변수를 선언한 후에 다른 중괄호를 이용한 배열 생성은 허용되지 않음.
-    * new 연산자를 사용해 값을 지정해줘야함.
+    * 배열 변수를 선언한 후 배열 생성을 하려면 new 연산자를 사용해 값을 지정해줘야함.
     ```java
     String[] str;
     str = ["1", "2"];       // 컴파일 에러
 
     String[] str = null;
-    names = new String[] {"1", "2"};     // 컴파일 성공
+    str = new String[] {"1", "2"};     // 컴파일 성공
     ```
   * new 연산자로 생성.
     * 타입[] 변수 = new 타입[길이];
@@ -576,12 +576,141 @@ void method(){                               |    Public class Car{
     }
   }
   ```
+<hr>
+
+### 6-4. 메서드
+* 메서드 선언
+  * ` 리턴타입 메서드이름(매개변수) { ... } `
+  * ` int Scores(int x, int y) {... } `
+* 매개변수의 개수를 모를경우
+  * 매개변수를 배열 타입으로 선언.
+  ```java
+  
+  int Scores(int[] values){ ... }          
+
+  ---------
+  
+  int[] values[] = {1, 2, 3};           // 배열을 선언해줘야함.
+  int result = myCom.Scores(values);
+
+  ```
+  * 매개변수를 ... 를 사용하기.
+  ```java
+  
+  int Scores(int ... values){ ... } 
+  
+  ----------
+  
+  int result = myCom.Scores(1, 2, 3)    // 따로 배열을 생성하지 않아도 됨.
+  
+  ```
+
+* 메서드 오버로딩
+  * 걑은 이름의 메서드를 여러 개 선언 하는 것.
+  * 조건은 매개변수의 타입, 개수, 순서 중 하나가 달라야 함.
+  ```java
+  public class Calculator{
+    int plus(int x, int y){ ... }
+    double plus(double x, double y){ ... }
+  }
+
+### 6-5. 인스턴스 멤버와 정적 멤버
+* 클래스 멤버
+  * 인스턴스 멤버 : 객체마다 가지고 있는 멤버
+  * 정적 멤버 : 클래스에 위치시키고 객체들이 공유하는 멤버.
+* 인스턴스 멤버와 this
+  * 객체를 생성한 후 사용할 수 있는 필드와 메서드
+  * 인스턴스 필드, 인스턴스 메서드.
+  * 객체에 소속된 멤버이므로 객체 없이는 사용할 수 없음.
+  ```java
+  public class Car{
+    int speed;          // 인스턴스 필드
+    void setSpeed(int speed){ ... }   // 인스턴스 메서드
+
+    void run(){
+      for(int i=0; i<50; i++){
+        this.setSpeed(i);           // this로 인스턴스 메서드 setSpeed에 접근.
+      }
+    }
+  
+  
+  }
+      // 인스턴스멤버를 외부에서 접근하려면 Car 객체(인스턴스)를 생성하고 참조변수로 접근해야함.
+  ```
+  * this
+    * 객체 외부에서 인스턴스 멤버에 접근하기 위해 참조 변수를 사용하는 것과 마찬가지로
+    * 객체 내부에서 인스턴스 멤버에 접근하기 위해 this를 사용.
+    * this.model은 model 필드라는 뜻.
+    * 주로 생성자, 메서드의 매개변수 이름이 필드와 동일한 경우 인스턴스 멤버임을 명시하고자 할 때 사용.
+<hr>
+
+* 정적 멤버와 static
+  * 객체를 생성하지 않고 필드와 메서드를 말함.
+  * 정적 필드, 정적 메서드
+  * static 키워드를 추가적으로 붙임.
+  ```java
+  public class Car{
+    static int speed;           // 정적 필드
+    static void setSpeed(int speed) { ... }    //정적 메서드
+
+  }
 
 
+* 인스턴스 필드, 정적 필드 사용 판단 기준
+  * 객체마다 가지고 있어야할 데이터면 인스턴스.
+  * 객체마다 가지고 있을 필요가 없는 공용 데이터면 정적.
+  * ex) 원의 넓이를 구할 때, 파이는 변하지 않는 공용 데이터이므로 정적필드로 선언.
+  * ex) 인스턴스마다 원의 색깔이 다를경우 color는 인스턴스 필드로 선언.
+* 인스턴스 메서드, 정적 메서드 사용 판단 기준
+  * 인스턴스 필드를 포함하고 있다면 인스턴스 메서드.
+  * 인스턴스 필드를 포함하고 있지 않다면 정적 메서드.
+* 정적 메서드에서는 인스턴스 필드,메서드를 사용할 수 없음.
+  * 인스턴스 멤버를 사용하고 싶다면 객체를 생성하고 참조변수로 접근해야함.
+<hr>
 
+* 싱글톤
+  * 프로그램 전체에서 단 하나의 객체만 생성 해야할 경우 이 객체를 싱글톤이라함.
+  * 클래스 외부에서 new 연산자로 생성자를 호출할 수 없게 막아야함. 호출한 만큼 객체가 생성되므로.
+  * private 접근 제한자를 사용하면 외부에서 호출할 수 없음.
 
+  ```java
+  public class Singleton{
+    private static Singleton singleton = new Singleton();      // 자신의 객체 생성 후, private로 외부에서 필드값을 변경 하지 못하게 함.
 
+    private Singleton(){}                  // private로 외부에서 생성자를 호출 못하게 함.
 
+    static Singleton getInstance(){       // 대신 외부에서 호출할 수 있는 정적메서드를 만들고 자신의 객체를 리턴해줌.
+      return singleton;
+    }
+  }                                       // 외부에서 이 객체를 얻는 유일한 방법은 메서드를 호출하는 방법뿐.
 
+  public class Example{
+    public static void main(string[] args){
+      
+      Singleton obj1 = Singleton.getInstance();
+      Singleton obj2 = Singleton.getInstatnce();
 
+    }
+  }
+  ```
+<hr>
+
+* final필드와 상수
+  * final 필드는 초기값이 저장되면 수정할 수 없다.
+  * 초기값을 주는 방법 2가지
+    * 필드 선언시에 주는 방법.
+      * ` final 타입 필드 = 초기값; `
+      * ` final int number = 10; `
+    * 생성자에서 주는 방법.
+      * 생성자는 final 필드의 최종 초기화를 마쳐야함. 
+      * 초기화 되지 않는 final 필드가 있다면 컴파일 에러.
+  * 상수와 다른 점.
+    * final필드는 객체마다 저장되고, 생성자의 매개값을 통해서 여러가지 값을 가질 수 있기 때문.
+    * 객체마다 final 필드의 값이 다름. 단지 그 객체에선 변하지 않는 값일 뿐.
+  * 상수 선언
+    * static final 을 붙여줌.
+    * 모두 대문자로 선언
+    * 서로 다른 단어가 혼합되면 언더바(_)로 단어들을 연결.
+    * ` static final double EARTH_RADIUS = 6400; `
+<hr>
 
