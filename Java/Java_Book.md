@@ -714,3 +714,68 @@ void method(){                               |    Public class Car{
     * ` static final double EARTH_RADIUS = 6400; `
 <hr>
 
+### 6-6. 패키지와 접근제한자
+* 패키지 선언
+  * ` package 상위패키지.하위패키지;`
+* import문
+  * 사용하고자 하는 클래스, 인터페이스가 다른 패키지에 소속되어 있을때 가져오는 방법.
+  * ` import 상위패키지.하위패키지.클래스이름; `
+  * ` import 상위패키지.하위패키지.*; `
+  ```java
+  package com.mycompany;
+
+  import com.hankook.Tire;       // com.hankook 패키지에 Tire 클래스 import
+
+  public class Car{
+    Tire tire = new Tire();      
+  }
+  ``` 
+* 접근제한자
+  * 클래스, 인터페이스가 가지고 있는 멤버의 접근을 제한.
+  * public 접근제한자 : 외부 클래스가 자유롭게 사용 가능.
+  * protected 접근제한자 : 같은 패키지 또는 자식 클래스에서 사용할 수 있도록 함.
+  * private 접근제한자 : 외부에서 사용할 수 없음.
+  * default 접근제한 : 위 3가지 접근제한자가 적용되지 않을때. 같은 패키지 소속된 클래스에서만 사용 가능.
+* Getter와 Setter 메서드
+  * 일반적으로 OOP에서는 객체의 필드를 객체 외부에서 직접 접근을 막음.
+  * 예르들어 자동차의 속력은 음수가 될 수 없는데, 외부에서 음수로 변경할 수 있음.
+  * 이러한 문제를 해결하기 위해 메서드를 통해 필드를 변경하는 방법을 선호.
+  * 필드는 private로 접근 못하게하고, 메서드는 public으로 해서 메서드를 통해 필드에 접근하도록 유도.
+  * 메서드는 매개값을 검증해서 이걸 써도 되는 값인지 판단한뒤 필드 값으로로 저장할 수 있음.  
+  ```java
+  void setSpeed(double speed){     // Setter 메서드
+    if(speed < 0){                 // 변경하려는 speed가 음수이면 speed 값이 0으로 저장.
+      this.speed = 0;
+      return;
+    }
+    else{                         // 변경하려는 speed가 음수가 아니라면 입력 값을 저장.
+      this.speed = speed;
+    }
+  }
+
+  dobule getSpeed(){               // Getter 메서드, 외부에서 객체의 데이터를 읽을 때.
+    double km = speed * 1.6;       // 필드값인 마일을 km단위로 환산후 외부로 리턴.
+    return km;
+  }
+  ```
+  ```java
+  private 타입 fieldName;          // 접근제한자 private
+
+  public 리턴타입 getFieldName(){               // 접근제한자: public, 리턴타입: 필드타입, 메서드이름: get필드이름, 리턴값: 필드값
+    return fieldName;
+  }
+
+  public void setFieldName(타입 fieldName){     // 접근제한자: public, 리턴타입: void, 메서드이름: set필드이름, 매개변수타입: 필드타입
+    this.fieldName = filedName;
+  }
+  ```
+  <hr>
+
+  ## 7. 상속
+  * 핵심키워드
+    * 7-1. 상속, 메서드 재정의, final 클래스, final 메서드
+    * 7-2. 다형성, 클래스 타입 변환, 자동 타입 변환, 강제 타입 변환, instanceof
+    * 7-3. 추상 클래스 ,추상 메서드, 재정의
+  <hr>
+
+  ### 7-1. 
