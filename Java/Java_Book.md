@@ -838,13 +838,88 @@ void method(){                               |    Public class Car{
   ```
 <hr>
 
-* 메서드 재정의
+* 메서드 재정의 (오버라이딩)
+  * 부모클래스의 메서드를 자식클래스에서 수정해서 다시 정의하는 것.
+  * 규칙
+    * 부모의 메서드와 동일한 시그너처(리턴타입, 메서드이름, 매개변수목록)를 가져야 함.
+    * 접근제한을 더 부모메서드보다 더 좁게 재정의할 수 없음.
+    * 새로운 예외를 throws할 수 없음.
+```java
+class Parent{
+  void method1(){ ... }
+  void method2(){ ... }
+}
+class Child{
+  @Override                     // 재정의 할 메서드 위 줄에 오버라이드 입력.
+  void method2(){ ... }         // 부모 메서드 재정의
+  void method3(){ ... }
+}
+class Example{
+  public static void main(stirng[] args){
+    Child child = new Child();
 
+    child.method1();         
+    child.method2();         // 재정의된 메서드 호출
+    child.method3();
 
+  }
+}
+```
+  * 부모 메서드 호출
+    * 자식 클래스에서 부모 클래스의 메서드를 재정의하면 부모 메서드는 숨겨지게 됨.
+    * 자식 클래스에서 부모 메서드를 호출하고 싶을땐 super.부모메서드() 입력.
+    ```java
+    class Child{
+      void method2(){ ... }
+      super.method2();                // 부모 메서드 호출. 
+    }
+    ```
+* final 클래스, fianl 메서드
+  * 상속할 수 없는 final 클래스
+  * ` public final 클래스 `
+  * 자식이 재정의할 수 없는 final 메서드
+  * ` public final 메서드 `
+* protected 접근 제한자
+  * 같은 패키지 안에서는 접근 제한이 없다.
+  * 다른 패키지에서는 자식 클래스만 접근을 허용.
+<hr>
 
-
-
-
-
-
-
+### 7-2. 타입변환과 다형성
+* 다형성
+  * 다형성은 사용방법은 동일하지만 다양한 객체를 이용해 다양한 실행결과가 나오도록 하는 성질.
+  * 자동차가 타이어를 사용하는 방법은 같지만 어떤 타이어(객체)를 장착하느냐에따라 성능이 달라질 수 있음.
+* 자동 타입 변환
+  * 발생 조건
+    * ` 부모타입 변수 = 자식타입; `
+    * ` Parent parent = child; `
+  * 클래스의 변환은 상속관계에 있는 클래스 사이에서 발생.
+  * 자식은 부모타입으로 자동 타입 변환이 가능.
+  * 자식은 부모의 특징과 기능을 상속받기 때문에 부모와 동일하게 취급 될 수 있다는 것.
+  ```java
+  Cat cat = new cat();
+  Animal animal = cat;           // Aniaml animal = new cat(); 도 가능.
+         // 고양이는 동물이다가 성립.
+  ```
+  * 부모 타입으로 자동 변환 된 이후, 부모클래스의 필드와 메서드만 접근 가능.
+  * 예외로는 자식클래스에 메서드가 재정의 되어있다면 자식클래스의 메서드가 호출됨.
+  ```java
+  class Parent{
+    void method1(){ ... }
+    void method2(){ ... }
+  }
+  class Child{
+    @Override                     
+    void method2(){ ... }         
+    void method3(){ ... }
+  }
+  class Example{
+    public static void main(stirng[] args){
+      Child child = new Child();
+      Parent parent = child;
+    
+      parent.method1();        // parent.method1() 호출.
+      parent.method2();        // child.method2() 호출. 재정의 되어있음.
+      parent.method3();        // 자식 메서드 호출 불가.
+    }
+  }
+  ```
