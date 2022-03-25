@@ -771,11 +771,80 @@ void method(){                               |    Public class Car{
   ```
   <hr>
 
-  ## 7. 상속
-  * 핵심키워드
-    * 7-1. 상속, 메서드 재정의, final 클래스, final 메서드
-    * 7-2. 다형성, 클래스 타입 변환, 자동 타입 변환, 강제 타입 변환, instanceof
-    * 7-3. 추상 클래스 ,추상 메서드, 재정의
-  <hr>
+## 7. 상속
+* 핵심키워드
+  * 7-1. 상속, 메서드 재정의, final 클래스, final 메서드
+  * 7-2. 다형성, 클래스 타입 변환, 자동 타입 변환, 강제 타입 변환, instanceof
+  * 7-3. 추상 클래스 ,추상 메서드, 재정의
+<hr>
 
-  ### 7-1. 
+### 7-1. 상속
+* 부모 클래스의 멤버를 자식 클래스에게 물려준다.
+* 중복되는 코드를 줄여준다.
+* 클래스 상속
+  ```java
+  class 자식클래스 extends 부모클래스 {
+    // 필드
+    // 생성자
+    // 메서드
+  }
+  ```
+* 상속 특징
+  * 여러 개의 부모클래스를 상속할 수 없음.
+  * 부모클래스에서 private 접근 제한을 갖는 필드와 메서드는 상속에서 제외됨.
+  * 부모클래스와 자식클래스가 다른 패키지에 존재한다면 default 접근 제한을 갖는 필드와 메서드도 상속에서 제외됨.
+* 부모 생성자 호출
+  * 부모 생성자는 자식 생성자의 맨 첫 줄에서 호출 됨.
+  * 자식 생성자가 명시적으로 선언하지 않았다면 기본 생성자를 호출한 뒤 부모 생성자를 호출함.
+  ```java
+  class iphone extends phone {
+    public iphone(){
+      super();               // super()는 부모의 기본 생성자를 호출.
+    } 
+  }
+  ```
+  * 직접 자식 생성자를 선언, 명시적으로 부모 생성자 호출.
+  ```java
+  class iphone extends phone{
+    iphone(매개변수, ...){
+      super(매개값, ...);
+    }
+  }
+  ```
+  * super(매개값, ...)은 매개값의 타입과 일치하는 부모 생성자를 호출함. 타입이 일치하는 부모 생성자가 없으면 에러.
+  * super(매개값, ...)를 적지 않으면 자동으로 super()가 추가됨. 매개값이 없으므로 부모클래스는 기본생성자가 존재해야함.
+  * 부모클래스에서 기본생성자가 없고 매개변수가 있는 생성자만 있다면 자식생성자에서 반드시 부모생성자 호출을 해야함. super(매개값, ...)
+  ```java
+  // 부모클래스, 기본 생성자가 없고 매개변수가 있는 생성자.
+  
+  public class Phone{
+    public String model;
+    public String color;
+
+    public Phone(String model, String color){            // 매개변수를 가지고 있는 생성자
+      this.model = model;
+      this.color = color;
+    }
+  }
+
+  public class Iphone{
+    public int number;
+    
+    public Iponhe(String model, String color, int number){
+      super(model, color);
+      this.number = number;
+    }
+  }
+  ```
+<hr>
+
+* 메서드 재정의
+
+
+
+
+
+
+
+
+
