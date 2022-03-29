@@ -917,9 +917,146 @@ class Example{
       Child child = new Child();
       Parent parent = child;
     
-      parent.method1();        // parent.method1() 호출.
-      parent.method2();        // child.method2() 호출. 재정의 되어있음.
+      parent.method1();        // 부모 클래스 method1() 호출.
+      parent.method2();        // 자식 클래스 method2() 호출. 재정의 되어있음.
       parent.method3();        // 자식 메서드 호출 불가.
     }
   }
+  ```
+<hr>
+
+* 필드의 다형성
+  * 왜 자동 타입 변환이 필요할까? 그냥 child 객체를 사용한다면 메서드1,2,3 을 다 사용할 수 있는데?
+  * 이유는 다형성을 구현하기 위해서.
+  * 필드의 타입을 부모타입으로 선언하면 다양한 자식 객체들이 저장될 수 있기 때문에.
+
+* 매개변수의 다형성
+
+<hr>
+
+* 강제 타입 변환
+  * 부모타입을 자식타입으로 변환.
+  * ` 자식타입 변수 = (자식타입)부모타입; `
+  * ` Child child = (Child)Parent; `
+  * 자동 타입 변환을 했을 때 부모의 필드와 메서드만 사용 가능했는데
+  * 만약 자식에서 선언된 필드와 메서드를 사용해야 한다면 이때 강제 타입 변환해서 사용.
+  * 주의) 자식타입-> 부모타입 자동변환 됐을때만 사용가능. 처음부터 부모를 자식으로 변환할 수 없음.
+  ```java
+  Class Parent{
+    String feild1;
+    void method1(){ ... }
+  }
+  Class Child extends Parent{
+    String field2;
+    void method2() { ... }
+  }
+  Class Example{
+    public static void main(String[] args){
+      Parent parent = new Child();            // 자동타입변환, 부모의 필드와 메서드만 사용가능.
+      parent.field1 = " 1234 ";               // 부모의 필드
+      parent.method1();                       // 부모의 메서드
+      parent.field2 = " 234 ";                    // 에러, 자식 필드 사용 불가.
+      parent.method2();                           // 에러, 자식 메서드 사용 불가.
+
+      Child child = (Child)Parent;            // 강제타입변환, 자식의 필드와 메서드 사용 가능. 
+      child.field2 = " 234 ";                 // 자식의 필드
+      child.method2();                        // 자식의 메서드
+    }
+
+  }
+<hr>
+
+* 객체 타입 확인
+  * instanceof 연산자
+  * 어떤 객체가 어떤 클래스의 인스턴스인지 확인.
+  * 주로 매개값의 타입을 조사할 때 사용.
+  * 메서드 내에서 강제타입변환이 필요할 경우 반드시 매개값이 어떤 객체인지 확인하고 안전하게 변환해야함.
+  * ` boolean result = 객체 instanceof 타입; `
+  ```java
+  public void method(Parent parent){             // parent가 Parent객체? Child객체인지?
+    if(parent instanceof Child){                 // parent 매개변수가 Child 타입을 참조하는지 조사
+      Child child = (Child) parent;
+    }
+  }
+  ```
+  * 만약 타입을 확인하지 않고 강제타입변환을 시도할 경우 ClassCastException 발생할 수 있음.
+<hr>
+
+### 7-3. 추상 클래스
+* 객체를 직접 생성할 수 있는 클래스를 실체 클래스라고 한다면
+* 이 클래스들의 공통적인 특성을 추출해서 선언한 클래스를 추상클래스라고 한다.
+* 추상클래스가 부모, 실체클래스가 자식인 상속의 관계를 가지고 있다.
+* ex) 추상클래스: 동물, 실체클래스: 새, 물고기, 강아지
+* 추상클래스 용도
+  * 공통된 필드와 메서드의 이름을 통일하는 목적
+  * 실체클래스를 작성할 때 시간 절약
+* 추상클래스 선언
+  * abstract 키워드-> new 연산자로 객체 생성불가 -> 상속을 통해 자식클래스만 만들 수 이씀.
+  * ` public abstract class Phone{ ... } `
+  * 필드, 생성자, 메서드 선언 가능. 
+  * 자식 객체가 생성될 때 super(...)를 호출, 추상클래스 객체를 생성하므로 추상클래스도 생성자가 있어야함.
+  ```java
+  public abstract class Phone{             // 추상클래스
+    public String owner;
+
+    public Phone(String owner){
+      thsi.owner = owner;
+    }
+    public void turnOn(){ System.out.println("전원을 켭니다.");}
+    public void turnOff(){ System.out.println("전원을 끕니다.");}
+  }
+
+  public class Smartphone extends Phone{          // 실체클래스
+    public Smartphone(String onwer){
+      super(onwer);
+    }
+    public void internetSearch(){ System.out.println("인터넷 검색을 합니다.");}
+  }
+
+  public class Example{
+    public static void main(String[] args){
+      Smartphone smartphone = new Smartphone("홍길동");
+
+      smartphone.trunOn();                   // phone의 메서드
+      smartphone.internetSearch();
+      smartphone.turnOff();                  // phone의 메서드
+    }
+  }
+  ```
+<hr>
+
+* 추상메서드, 재정의(@Override)
+  * abstract 키워드, 메서드의 선언부만 있고 실행내용이 없는 메서드.
+  * ` [public | protected] abstract void sound(); `
+  * 자식클래스가 반드시 작성해야하는 메서드가 있을경우 추상메서드로 선언. 
+  * 자식클래스는 추상메서드를 재정의해서 작성해야하고 그렇지않으면 컴파일 에러.
+  ```java
+  public abstract class Animal{           // 추상클래스
+    public abstract sound();              // 추상메서드
+  }
+
+  public class Animal extends Dog{
+    @Override                             // 자식클래스에서 메서드 재정의
+    public void sound(){
+      System.out.println("멍멍");
+    }
+  }
+
+  public class Example{
+    public static void main(String[] args){
+      Dog dog = new Dog();
+      dog.sound();
+
+      Animal animal = null;          // 변수의 자동타입변환 및 재정의된 메서드 호출
+      animal = new Dog();
+      animal.sound();
+
+      animalSound(new Dog());        // 메서드의 다형성, 자동타입변환
+    }
+
+    public static void animalSound(Animal animal){
+      animal.sound();               // 재정의된 메서드 호출
+    }
+  }
+
   ```
