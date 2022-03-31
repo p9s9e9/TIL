@@ -1071,5 +1071,102 @@ class Example{
 * 인터페이스를 통해 다양한 객체를 동일한 사용 방법으로 이용 가능.
 * 개발코드가 인터페이스의 메서드를 호출하면, 인터페이스는 객체의 메서드를 호출함.
 ![Interface](img/Java_Book_Interface.png)
+  * 개발코드를 수정하지 않고 사용하는 객체를 변경할 수 있도록 하기 위해.
+  * 여러 객체들과 사용이 가능하므로 어떤 객체를 사용하느냐에 따라 달라짐.
+  * 개발코드 측면에선 코드변경 없이 실행내용, 리턴값을 다양화할 수 있는 장점.
+<hr>
 
+* 인터페이스 선언
+  * ` [public] interface 이름 { ... } `
+  * ` public interface RemoteControl { ... } `
+  * 인터페이스 멤버: 상수필드, 추상메서드.
+  * 객체 생성 불가, 생성자를 가질 수 없음.
+  ``` java
+  interface 이름 {
+    타입 상수이름 = 값;            // 상수
+    타입 메서드이름(매개변수);     // 추상메서드
+  }
+  ```
+  * 상수필드 선언
+    * 인터페이스에 선언된 필드는 모두 public static final의 특성을 가짐.
+    * public static final 을 생략하더라도 컴파일 과정에서 자동으로 붙게 됨.
+    * ` [public static final] 타입 상수이름 = 값; `
+  * 추상메서드 선언
+    * 인터페이스를 통해 호출된 메서드는 최종적으로 객체에서 실행됨.
+    * 그렇기 때문에 실행 블록이 필요없는 추상메서드로 선언.
+    * public abstract 를 생략하더라도 컴파일 과정에서 자동으로 붙게 됨.
+    * ` [public abstract] 리턴타입 메서드이름(매개변수); `
+  ```java
+  public interface RemoteControl{
+    public int MAX_VOLUME = 10;
+    public int MIN_VOLUME = 0;
 
+    public void turnOn();
+    public void turnOff();
+    public void setVolume(int volume);
+  }
+  ```
+<hr>
+
+* 인터페이스 구현(implemnet)
+  * 객체는 인터페이스에서 정의된 추상메서드와 동일한 실체메서드를 가지고 있어야함.
+  * 이런 객체를 인터페이스의 구현객체라 함.
+  * 구현객체를 생성하는 클래스를 구현클래스라 함.
+  * 구현 클래스
+    * 인터페이스 타입으로 사용할 수 있음을 알려주기 위해 클래스 선언부에 implements 키워드를 추가.
+    * 인터페이스의 선언된 추상메서드의 실체메서드를 선언해야함.
+    * ` public class 구현클래스이름 implements 인터페이스이름 { ... } `
+    ```java
+    public class Television implements RemoteControl{       // 구현클래스 선언
+      private int volume;
+
+      public void turnOn{ ... }                           // 추상메서드의 실체메서드
+      public void turnOff{ ... }
+      public void setVolume(int volume){
+        if(volume>RemoteControl.MAX_VOLUME){               // 인터페이스 상수를 이용해서 volume필드의 값을 제한
+          this.volume = RemoteControl.MAX_VOLUME; 
+        } else if(volume<RemoteControl.MIN_VOLUME){
+          this.volume = RemoteControl.Min_VOLUME;
+        } else{
+          this.volume = volume;
+        }
+    }  
+    ```
+    * 구현클래스가 작성되면 new 연산자로 객체를 생성할 수 있음
+    * 구현 객체를 사용하려면 인터페이스 변수를 선언하고 구현객체를 대입해야함.
+    * ` 인터페이스 변수 = new 구현객체(); `
+    ```java
+    public class Example{
+      public static void main(String[] args){
+        RemoteControl rc = new Television();
+      }
+    }
+    ```
+  * 다중인터페이스 구현클래스
+    * 인터페이스 A, B가 객체의 메서드를 호출할 수 있으려면 객체는 이 두 인터페이스를 모두 구현해야함.
+    ```java
+    public class 구현클래스이름 implements 인터페이스A, 인터페이스B{
+        // 인터페이스 A에 선언된 추상메서드의 실체메서드 선언.
+        // 인터페이스 B에 선언돈 추상메서드의 실체메서드 선언.
+    }
+    ```
+<hr>
+
+* 인터페이스 사용
+  * 인터페이스는 필드, 생성자 또는 메서드의 매개변수, 생성자 또는 메서드의 로컬변수로 선언 될 수 있음.
+  ```java
+  public class MyClass{
+    RemoteControl rc = new Television();          // 인터페이스가 필드타입으로 사용.
+
+   Myclass(RemoteControl rc){                    // 인터페이스가 생성자의 매개변수로 사용.
+     this.rc = rc;
+   }
+
+    void methodA(){
+     RemoteControl rc = new Audio();             // 인터페이스가 메서드의 로컬변수로 사용.
+   }
+
+   void methodB(RemoteControl rc){ ... }         // 인터페이스가 메서드의 매개변수로 사용
+  
+  }
+  ``` 
