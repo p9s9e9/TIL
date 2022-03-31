@@ -280,7 +280,7 @@ do{
     * 스택 영역에 변수가 생성되는 시점은 변수에 값이 저장될 때.
     * 기본타입 변수는 스택 영역에 직접 값을 가지고 있음.
     * 참조타입 변수는 스택 영역에 힙 영역 주소 값을 가지고 있음.
-![ReferenceType](img/Java_Book_ReferenceType.png)
+![ReferenceType](img/Java_Book_ReferenceType.png) 
 <hr>
 
 * 참조 변수의 ==, != 연산
@@ -1066,5 +1066,10 @@ class Example{
   * 8-2. 자동타입변환, 다형성, 강제타입변환, instancof, 인터페이스 상속
 <hr>
 
+### 8-1. 인터페이스
+* 인터페이스는 객체의 사용 방법을 정의한 타입.
+* 인터페이스를 통해 다양한 객체를 동일한 사용 방법으로 이용 가능.
+* 개발코드가 인터페이스의 메서드를 호출하면, 인터페이스는 객체의 메서드를 호출함.
+![Interface](img/Java_Book_Interface.png)
 
 
