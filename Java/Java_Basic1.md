@@ -280,7 +280,7 @@ do{
     * 스택 영역에 변수가 생성되는 시점은 변수에 값이 저장될 때.
     * 기본타입 변수는 스택 영역에 직접 값을 가지고 있음.
     * 참조타입 변수는 스택 영역에 힙 영역 주소 값을 가지고 있음.
-![ReferenceType](img/Java_Book_ReferenceType.png)
+![ReferenceType](img/Java_Book_ReferenceType.png) 
 <hr>
 
 * 참조 변수의 ==, != 연산
@@ -838,13 +838,335 @@ void method(){                               |    Public class Car{
   ```
 <hr>
 
-* 메서드 재정의
+* 메서드 재정의 (오버라이딩)
+  * 부모클래스의 메서드를 자식클래스에서 수정해서 다시 정의하는 것.
+  * 규칙
+    * 부모의 메서드와 동일한 시그너처(리턴타입, 메서드이름, 매개변수목록)를 가져야 함.
+    * 접근제한을 더 부모메서드보다 더 좁게 재정의할 수 없음.
+    * 새로운 예외를 throws할 수 없음.
+```java
+class Parent{
+  void method1(){ ... }
+  void method2(){ ... }
+}
+class Child{
+  @Override                     // 재정의 할 메서드 위 줄에 오버라이드 입력.
+  void method2(){ ... }         // 부모 메서드 재정의
+  void method3(){ ... }
+}
+class Example{
+  public static void main(stirng[] args){
+    Child child = new Child();
 
+    child.method1();         
+    child.method2();         // 재정의된 메서드 호출
+    child.method3();
 
+  }
+}
+```
+  * 부모 메서드 호출
+    * 자식 클래스에서 부모 클래스의 메서드를 재정의하면 부모 메서드는 숨겨지게 됨.
+    * 자식 클래스에서 부모 메서드를 호출하고 싶을땐 super.부모메서드() 입력.
+    ```java
+    class Child{
+      void method2(){ ... }
+      super.method2();                // 부모 메서드 호출. 
+    }
+    ```
+* final 클래스, fianl 메서드
+  * 상속할 수 없는 final 클래스
+  * ` public final 클래스 `
+  * 자식이 재정의할 수 없는 final 메서드
+  * ` public final 메서드 `
+* protected 접근 제한자
+  * 같은 패키지 안에서는 접근 제한이 없다.
+  * 다른 패키지에서는 자식 클래스만 접근을 허용.
+<hr>
 
+### 7-2. 타입변환과 다형성
+* 다형성
+  * 다형성은 사용방법은 동일하지만 다양한 객체를 이용해 다양한 실행결과가 나오도록 하는 성질.
+  * 자동차가 타이어를 사용하는 방법은 같지만 어떤 타이어(객체)를 장착하느냐에따라 성능이 달라질 수 있음.
+* 자동 타입 변환
+  * 발생 조건
+    * ` 부모타입 변수 = 자식타입; `
+    * ` Parent parent = child; `
+  * 클래스의 변환은 상속관계에 있는 클래스 사이에서 발생.
+  * 자식은 부모타입으로 자동 타입 변환이 가능.
+  * 자식은 부모의 특징과 기능을 상속받기 때문에 부모와 동일하게 취급 될 수 있다는 것.
+  ```java
+  Cat cat = new cat();
+  Animal animal = cat;           // Aniaml animal = new cat(); 도 가능.
+         // 고양이는 동물이다가 성립.
+  ```
+  * 부모 타입으로 자동 변환 된 이후, 부모클래스의 필드와 메서드만 접근 가능.
+  * 예외로는 자식클래스에 메서드가 재정의 되어있다면 자식클래스의 메서드가 호출됨.
+  ```java
+  class Parent{
+    void method1(){ ... }
+    void method2(){ ... }
+  }
+  class Child{
+    @Override                     
+    void method2(){ ... }         
+    void method3(){ ... }
+  }
+  class Example{
+    public static void main(stirng[] args){
+      Child child = new Child();
+      Parent parent = child;
+    
+      parent.method1();        // 부모 클래스 method1() 호출.
+      parent.method2();        // 자식 클래스 method2() 호출. 재정의 되어있음.
+      parent.method3();        // 자식 메서드 호출 불가.
+    }
+  }
+  ```
+<hr>
 
+* 필드의 다형성
+  * 왜 자동 타입 변환이 필요할까? 그냥 child 객체를 사용한다면 메서드1,2,3 을 다 사용할 수 있는데?
+  * 이유는 다형성을 구현하기 위해서.
+  * 필드의 타입을 부모타입으로 선언하면 다양한 자식 객체들이 저장될 수 있기 때문에.
 
+* 매개변수의 다형성
 
+<hr>
 
+* 강제 타입 변환
+  * 부모타입을 자식타입으로 변환.
+  * ` 자식타입 변수 = (자식타입)부모타입; `
+  * ` Child child = (Child)Parent; `
+  * 자동 타입 변환을 했을 때 부모의 필드와 메서드만 사용 가능했는데
+  * 만약 자식에서 선언된 필드와 메서드를 사용해야 한다면 이때 강제 타입 변환해서 사용.
+  * 주의) 자식타입-> 부모타입 자동변환 됐을때만 사용가능. 처음부터 부모를 자식으로 변환할 수 없음.
+  ```java
+  Class Parent{
+    String feild1;
+    void method1(){ ... }
+  }
+  Class Child extends Parent{
+    String field2;
+    void method2() { ... }
+  }
+  Class Example{
+    public static void main(String[] args){
+      Parent parent = new Child();            // 자동타입변환, 부모의 필드와 메서드만 사용가능.
+      parent.field1 = " 1234 ";               // 부모의 필드
+      parent.method1();                       // 부모의 메서드
+      parent.field2 = " 234 ";                    // 에러, 자식 필드 사용 불가.
+      parent.method2();                           // 에러, 자식 메서드 사용 불가.
 
+      Child child = (Child)Parent;            // 강제타입변환, 자식의 필드와 메서드 사용 가능. 
+      child.field2 = " 234 ";                 // 자식의 필드
+      child.method2();                        // 자식의 메서드
+    }
 
+  }
+<hr>
+
+* 객체 타입 확인
+  * instanceof 연산자
+  * 어떤 객체가 어떤 클래스의 인스턴스인지 확인.
+  * 주로 매개값의 타입을 조사할 때 사용.
+  * 메서드 내에서 강제타입변환이 필요할 경우 반드시 매개값이 어떤 객체인지 확인하고 안전하게 변환해야함.
+  * ` boolean result = 객체 instanceof 타입; `
+  ```java
+  public void method(Parent parent){             // parent가 Parent객체? Child객체인지?
+    if(parent instanceof Child){                 // parent 매개변수가 Child 타입을 참조하는지 조사
+      Child child = (Child) parent;
+    }
+  }
+  ```
+  * 만약 타입을 확인하지 않고 강제타입변환을 시도할 경우 ClassCastException 발생할 수 있음.
+<hr>
+
+### 7-3. 추상 클래스
+* 객체를 직접 생성할 수 있는 클래스를 실체 클래스라고 한다면
+* 이 클래스들의 공통적인 특성을 추출해서 선언한 클래스를 추상클래스라고 한다.
+* 추상클래스가 부모, 실체클래스가 자식인 상속의 관계를 가지고 있다.
+* ex) 추상클래스: 동물, 실체클래스: 새, 물고기, 강아지
+* 추상클래스 용도
+  * 공통된 필드와 메서드의 이름을 통일하는 목적
+  * 실체클래스를 작성할 때 시간 절약
+* 추상클래스 선언
+  * abstract 키워드-> new 연산자로 객체 생성불가 -> 상속을 통해 자식클래스만 만들 수 이씀.
+  * ` public abstract class Phone{ ... } `
+  * 필드, 생성자, 메서드 선언 가능. 
+  * 자식 객체가 생성될 때 super(...)를 호출, 추상클래스 객체를 생성하므로 추상클래스도 생성자가 있어야함.
+  ```java
+  public abstract class Phone{             // 추상클래스
+    public String owner;
+
+    public Phone(String owner){
+      thsi.owner = owner;
+    }
+    public void turnOn(){ System.out.println("전원을 켭니다.");}
+    public void turnOff(){ System.out.println("전원을 끕니다.");}
+  }
+
+  public class Smartphone extends Phone{          // 실체클래스
+    public Smartphone(String onwer){
+      super(onwer);
+    }
+    public void internetSearch(){ System.out.println("인터넷 검색을 합니다.");}
+  }
+
+  public class Example{
+    public static void main(String[] args){
+      Smartphone smartphone = new Smartphone("홍길동");
+
+      smartphone.trunOn();                   // phone의 메서드
+      smartphone.internetSearch();
+      smartphone.turnOff();                  // phone의 메서드
+    }
+  }
+  ```
+<hr>
+
+* 추상메서드, 재정의(@Override)
+  * abstract 키워드, 메서드의 선언부만 있고 실행내용이 없는 메서드.
+  * ` [public | protected] abstract void sound(); `
+  * 자식클래스가 반드시 작성해야하는 메서드가 있을경우 추상메서드로 선언. 
+  * 자식클래스는 추상메서드를 재정의해서 작성해야하고 그렇지않으면 컴파일 에러.
+  ```java
+  public abstract class Animal{           // 추상클래스
+    public abstract sound();              // 추상메서드
+  }
+
+  public class Animal extends Dog{
+    @Override                             // 자식클래스에서 메서드 재정의
+    public void sound(){
+      System.out.println("멍멍");
+    }
+  }
+
+  public class Example{
+    public static void main(String[] args){
+      Dog dog = new Dog();
+      dog.sound();
+
+      Animal animal = null;          // 변수의 자동타입변환 및 재정의된 메서드 호출
+      animal = new Dog();
+      animal.sound();
+
+      animalSound(new Dog());        // 메서드의 다형성, 자동타입변환
+    }
+
+    public static void animalSound(Animal animal){
+      animal.sound();               // 재정의된 메서드 호출
+    }
+  }
+  
+  ```
+## 8. 상속
+* 핵심키워드
+  * 8-1. 상수필드, 추상메서드, 구현클래스, implements, 인터페이스 사용
+  * 8-2. 자동타입변환, 다형성, 강제타입변환, instancof, 인터페이스 상속
+<hr>
+
+### 8-1. 인터페이스
+* 인터페이스는 객체의 사용 방법을 정의한 타입.
+* 인터페이스를 통해 다양한 객체를 동일한 사용 방법으로 이용 가능.
+* 개발코드가 인터페이스의 메서드를 호출하면, 인터페이스는 객체의 메서드를 호출함.
+![Interface](img/Java_Book_Interface.png)
+  * 개발코드를 수정하지 않고 사용하는 객체를 변경할 수 있도록 하기 위해.
+  * 여러 객체들과 사용이 가능하므로 어떤 객체를 사용하느냐에 따라 달라짐.
+  * 개발코드 측면에선 코드변경 없이 실행내용, 리턴값을 다양화할 수 있는 장점.
+<hr>
+
+* 인터페이스 선언
+  * ` [public] interface 이름 { ... } `
+  * ` public interface RemoteControl { ... } `
+  * 인터페이스 멤버: 상수필드, 추상메서드.
+  * 객체 생성 불가, 생성자를 가질 수 없음.
+  ``` java
+  interface 이름 {
+    타입 상수이름 = 값;            // 상수
+    타입 메서드이름(매개변수);     // 추상메서드
+  }
+  ```
+  * 상수필드 선언
+    * 인터페이스에 선언된 필드는 모두 public static final의 특성을 가짐.
+    * public static final 을 생략하더라도 컴파일 과정에서 자동으로 붙게 됨.
+    * ` [public static final] 타입 상수이름 = 값; `
+  * 추상메서드 선언
+    * 인터페이스를 통해 호출된 메서드는 최종적으로 객체에서 실행됨.
+    * 그렇기 때문에 실행 블록이 필요없는 추상메서드로 선언.
+    * public abstract 를 생략하더라도 컴파일 과정에서 자동으로 붙게 됨.
+    * ` [public abstract] 리턴타입 메서드이름(매개변수); `
+  ```java
+  public interface RemoteControl{
+    public int MAX_VOLUME = 10;
+    public int MIN_VOLUME = 0;
+
+    public void turnOn();
+    public void turnOff();
+    public void setVolume(int volume);
+  }
+  ```
+<hr>
+
+* 인터페이스 구현(implemnet)
+  * 객체는 인터페이스에서 정의된 추상메서드와 동일한 실체메서드를 가지고 있어야함.
+  * 이런 객체를 인터페이스의 구현객체라 함.
+  * 구현객체를 생성하는 클래스를 구현클래스라 함.
+  * 구현 클래스
+    * 인터페이스 타입으로 사용할 수 있음을 알려주기 위해 클래스 선언부에 implements 키워드를 추가.
+    * 인터페이스의 선언된 추상메서드의 실체메서드를 선언해야함.
+    * ` public class 구현클래스이름 implements 인터페이스이름 { ... } `
+    ```java
+    public class Television implements RemoteControl{       // 구현클래스 선언
+      private int volume;
+
+      public void turnOn{ ... }                           // 추상메서드의 실체메서드
+      public void turnOff{ ... }
+      public void setVolume(int volume){
+        if(volume>RemoteControl.MAX_VOLUME){               // 인터페이스 상수를 이용해서 volume필드의 값을 제한
+          this.volume = RemoteControl.MAX_VOLUME; 
+        } else if(volume<RemoteControl.MIN_VOLUME){
+          this.volume = RemoteControl.Min_VOLUME;
+        } else{
+          this.volume = volume;
+        }
+    }  
+    ```
+    * 구현클래스가 작성되면 new 연산자로 객체를 생성할 수 있음
+    * 구현 객체를 사용하려면 인터페이스 변수를 선언하고 구현객체를 대입해야함.
+    * ` 인터페이스 변수 = new 구현객체(); `
+    ```java
+    public class Example{
+      public static void main(String[] args){
+        RemoteControl rc = new Television();
+      }
+    }
+    ```
+  * 다중인터페이스 구현클래스
+    * 인터페이스 A, B가 객체의 메서드를 호출할 수 있으려면 객체는 이 두 인터페이스를 모두 구현해야함.
+    ```java
+    public class 구현클래스이름 implements 인터페이스A, 인터페이스B{
+        // 인터페이스 A에 선언된 추상메서드의 실체메서드 선언.
+        // 인터페이스 B에 선언돈 추상메서드의 실체메서드 선언.
+    }
+    ```
+<hr>
+
+* 인터페이스 사용
+  * 인터페이스는 필드, 생성자 또는 메서드의 매개변수, 생성자 또는 메서드의 로컬변수로 선언 될 수 있음.
+  ```java
+  public class MyClass{
+    RemoteControl rc = new Television();          // 인터페이스가 필드타입으로 사용.
+
+   Myclass(RemoteControl rc){                    // 인터페이스가 생성자의 매개변수로 사용.
+     this.rc = rc;
+   }
+
+    void methodA(){
+     RemoteControl rc = new Audio();             // 인터페이스가 메서드의 로컬변수로 사용.
+   }
+
+   void methodB(RemoteControl rc){ ... }         // 인터페이스가 메서드의 매개변수로 사용
+  
+  }
+  ``` 
